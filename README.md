@@ -19,6 +19,7 @@ From the Credentials page click into the newly created client ID, and click Down
 2.Install the dependencies: 
 
   a.pip3 install --upgrade google-api-python-client
+  
   b.pip3 install --upgrade oauth2client
 
 3.Manually supply the VIEWID for a particular client along with the desired start and end dates.
