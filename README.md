@@ -26,3 +26,18 @@ From the Credentials page click into the newly created client ID, and click Down
 
 4.Run the script in order to get the desired output.
 
+
+IMPORTANT LINKS:
+
+1.Google Analytics Hotel Nikko Link
+https://analytics.google.com/analytics/web/#/report/visitors-actives/a26228455w50807234p51451732/_u.date00=20170629&_u.date01=20180724
+
+2.Analytics Reporting API v4
+https://console.developers.google.com/apis/library/analyticsreporting.googleapis.com?q=Analytics&project=total-media-101609
+
+3.Trying the API
+https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet#columnheader
+
+4.Dimensions and Metrics Explorer
+https://developers.google.com/analytics/devguides/reporting/core/dimsmets
+
