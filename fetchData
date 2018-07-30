@@ -65,6 +65,29 @@ def get_report(analytics):
         }]
       }
   ).execute()
+  
+  '''
+  Body to get total number of sessions
+  body={
+        'reportRequests': [
+        {
+          'viewId': VIEW_ID,
+          'dateRanges': [{'startDate': '2017-10-01', 'endDate': '2017-11-01'}],
+          'metrics': [{'expression': 'ga:sessions'}]
+        }]
+      }
+      
+  Body to get total number of pageviews with dimensions
+  body={
+        'reportRequests': [
+        {
+          'viewId': VIEW_ID,
+          'dateRanges': [{'startDate': '2017-10-01', 'endDate': '2017-11-01'}],
+          'metrics': [{'expression': 'ga:pageviews'}],
+          'dimensions': [{'name': 'ga:date'}]
+        }]
+      }
+  '''
 
 
 def print_response(response):
