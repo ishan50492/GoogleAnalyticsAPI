@@ -57,7 +57,15 @@ def get_report(analytics):
         {
           'viewId': VIEW_ID,
           'dateRanges': [{'startDate': '2017-10-01', 'endDate': '2017-11-01'}],
-          'metrics': [{'expression': 'ga:pageviews'}],
+          'metrics': [
+              {'expression': 'ga:pageviews'},
+              {'expression': 'ga:sessions'},
+              {'expression': 'ga:bounces'},
+              {'expression': 'ga:bounceRate'},
+              {'expression': 'ga:sessionDuration'},
+              {'expression': 'ga:avgSessionDuration'},
+              {'expression': 'ga:hits'},
+              {'expression': 'ga:users'}],
           'dimensions': [{'name': 'ga:date'}]
         }]
       }
@@ -91,10 +99,24 @@ def write_response(response):
   #Column names
   column1='Dates'
   column2='Page Views'
+  column3='Sessions'
+  column4='Bounces'
+  column5='Bounce Rate'
+  column6='Session Duration'
+  column7='Avg Session Duration'
+  column8='Hits'
+  column9='Users'
 
   #Open a dataframe and write to it
   listDates=[]
-  listValues=[]
+  list_pageviews=[]
+  list_sessions=[]
+  list_bounces=[]
+  list_bouncerate=[]
+  list_sessionduration=[]
+  list_avgsessionduration=[]
+  list_hits=[]
+  list_users=[]
 
 
   for report in response.get('reports', []):
@@ -114,10 +136,37 @@ def write_response(response):
       for i, values in enumerate(dateRangeValues):
         #print('Date range (' + str(i) + ')')
         for metricHeader, value in zip(metricHeaders, values.get('values')):
-          listValues.append(value)
+            name=metricHeader.get('name')
+            name=name.replace(" ","")
 
+            if name == 'ga:pageviews':
+                list_pageviews.append(value)
+            elif  name=='ga:sessions':
+                list_sessions.append(value)
+            elif  name=='ga:bounces':
+                list_bounces.append(value)
+            elif  name=='ga:bounceRate':
+                list_bouncerate.append(value)
+            elif  name=='ga:sessionDuration':
+                list_sessionduration.append(value)
+            elif  name=='ga:avgSessionDuration':
+                list_avgsessionduration.append(value)
+            elif name == 'ga:hits':
+                list_hits.append(value)
+            elif name=='ga:users':
+                list_users.append(value)
+  '''
+  print("list of pageviews: ",list_pageviews)
+  print("list of sessions: ", list_sessions)
+  print("list of bounces: ", list_bounces)
+  print("list of bounceRate: ", list_bouncerate)
+  print("list of sessionDuration: ", list_sessionduration)
+  print("list of avgSessionDuration: ", list_avgsessionduration)
+  print("list of hits: ", list_hits)
+  print("list of users: ", list_users)
+  '''
   #Writing the lists to the excel
-  df=DataFrame({column1: listDates,column2: listValues})
+  df=DataFrame({column1: listDates,column2: list_pageviews,column3:list_sessions,column4:list_bounces,column5:list_bouncerate,column6:list_sessionduration,column7:list_avgsessionduration,column8:list_hits,column9:list_users})
 
   df.to_excel('output.xlsx',sheet_name='sheet1',index=False)
 
